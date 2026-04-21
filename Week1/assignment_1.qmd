@@ -1,0 +1,41 @@
+---
+title: "assignment_1"
+format: pdf
+editor: visual
+---
+
+```{r}
+library(here)
+library(tidyverse)
+library(janitor)
+```
+
+Github test change. Testing
+
+## Relationship between NPP and transpiration
+
+We wanted to see if there was a relationship between net primary productivity (NPP) and transpiration. Transpiration has a large effect on global water budgets. With rising CO2 levels, we expect NPP to increase in many areas of the world, which is expected to have implications on transpiration levels.
+
+```{r}
+data_raw <- read.csv('p301.csv')
+data_clean <- clean_names(data_raw)
+
+```
+
+## Linear Regression between NPP and transpiration
+
+```{r}
+lin_reg <- lm(transpiration ~ npp, data = data_clean)
+summary(lin_reg)
+```
+
+```{r}
+npp_vs_trans <- ggplot(data_clean, aes(x=npp, y=transpiration))+
+  geom_point()+
+  geom_smooth(method = lm, color='red')+
+  theme_bw()
+npp_vs_trans
+
+```
+
+We can see that transpiration is positively correlated with net primary productivity. For a 1 KgC/m2/day increase in net primary productivity, we expect a 0.264 m/m2/day increase in transpiration. This is expected, as more plant matter provides more routes for transpiration to occur. This slope estimate had a p-value of 2.2 x 10\^-16, meaning that it is statistically significant. The linear regression between NPP and transpiration has an R\^2 of 0.586, meaning that NPP explains 58.6% of the variance in transpiration. The model had an overall p-value of 2.2 x 10\^-16, meaning that it is statistically significant. NPP explains a sizable amount of variance, but there may be other factors contributing to changes in transpiration as well.
