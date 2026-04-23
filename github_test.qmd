@@ -4,14 +4,14 @@ format: html
 editor: visual
 ---
 
+Committing a mistake
+
 ```{r}
 library(here)
 library(tidyverse)
 # read in the data
 p301 = read.csv(here("Week1/Data", "p301.csv"))
 ```
-
-COMMIT BAD CHANGES
 
 ```{r}
 # aggregate by water year
