@@ -3,7 +3,9 @@ title: "assignment_1"
 format: pdf
 editor: visual
 ---
-#adding a change on laptop
+
+#resolved the conflict! 
+
 ```{r}
 library(here)
 library(tidyverse)
