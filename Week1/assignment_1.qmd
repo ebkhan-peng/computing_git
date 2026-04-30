@@ -4,7 +4,10 @@ format: pdf
 editor: visual
 ---
 
-#resolved the conflict! 
+#resolved the conflict!
+######################################
+#making changes in a branch
+
 
 ```{r}
 library(here)
