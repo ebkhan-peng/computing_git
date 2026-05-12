@@ -1,0 +1,52 @@
+---
+title: "simpson_contract"
+format: html
+editor: visual
+---
+
+# Contract
+Function: simpson_index.R
+
+Inputs:
+- each_spec = a vector containing the number of individuals in each species
+- all_spec = the number of individuals in all species. should be the sum 
+  of each_spec
+  
+Operations
+- the function simpson_index.R calculates the Simpson's Biodiversity Index
+  using the following equation:
+  
+  from 1 to length(each_spec):
+  sum((each_species[i]/all_spec)^2)
+  
+Outputs:
+- result of the Simpson Index calculation
+  
+# Testing simpson_index.R
+```{r}
+#load packages
+library(here)
+source(here("R/simpson_index.R"))
+```
+
+
+```{r}
+#generate data
+spec = c('Lion', 'Tiger', 'Bear', 'Penguin', 'Axolotyl')
+sample_spec = as.factor(sample(spec, 1000, replace=TRUE))
+char_spec = as.character(summary(sample_spec))
+each_spec = as.numeric(char_spec)
+summary(sample_spec)
+```
+
+```{r}
+#run the function
+D = simpson_index(each_spec, sum(each_spec))
+D
+```
+```{r}
+cat(sprintf("Simpson's Index = %3.1f", D))
+```
+
+
+
